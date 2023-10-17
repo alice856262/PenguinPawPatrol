@@ -166,14 +166,17 @@ public class PenguinFamily
     /**
      * Increases the unique ID by one.
      *
-     * @param uniqueID    The current unique ID.
-     * @return            The incremented unique ID.
+     * @param uniqueNumber    The numeric part in the uniqueID.
+     * @return                The incremented numeric part in the unique ID.
      */
-    public int increaseID(int uniqueID)
+    public int increaseID(int uniqueNumber)
     {
-        return uniqueID + 1;
+        if (uniqueNumber <= 0)
+        {
+            return 1;
+        }
+        return uniqueNumber + 1;
     }
-
 
     /**
      * Check if both parent penguins in the penguin family are alive.
