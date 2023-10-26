@@ -46,7 +46,6 @@ public abstract class Animal
      *
      * @return    True if the animal is alive, false if it is not.
      */
-    // get method
     public boolean isAlive()
     {
         return alive;

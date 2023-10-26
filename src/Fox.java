@@ -17,7 +17,7 @@ public class Fox extends Animal
     public Fox()
     {
         super(true);
-        numberFoxKilled = new int[4];    // [0]: malePenguin, [1]: femalePenguin, [2]: chick, [3]: egg
+        numberFoxKilled = new int[4];    // numberFoxKilled[0]: malePenguin, numberFoxKilled[1]: femalePenguin, numberFoxKilled[2]: chick, numberFoxKilled[3]: egg
     }
 
     /**
@@ -40,7 +40,6 @@ public class Fox extends Animal
      * @param animalLists          Lists of animals used in the simulation.
      * @return                     An array representing the number of each type of animal killed.
      */
-    // Fox attack penguin & chick & egg
     @Override
     public int[] attack(int dogNumber, ArrayList<PenguinFamily> penguinFamilyList, ArrayList<Animal>... animalLists)
     {
@@ -48,22 +47,22 @@ public class Fox extends Animal
         {
             GenerateRandomNumber randomNumber = new GenerateRandomNumber();
 
-            // Kill male penguin
+            // Kill male penguin: use collective probability
             int probability = randomNumber.generateRandomNumber(1, 1000 * 20);
             foxKillAnimals(penguinFamily.getMalePenguin(), dogNumber, probability, 0);
 
-            // Kill female penguin
+            // Kill female penguin: use collective probability
             probability = randomNumber.generateRandomNumber(1, 1000 * 20);
             foxKillAnimals(penguinFamily.getFemalePenguin(), dogNumber, probability, 1);
 
-            // Kill chick
+            // Kill chick: use collective probability
             for (Chick chick : penguinFamily.getChickList())
             {
                 probability = randomNumber.generateRandomNumber(1, 1000 * 20);
                 foxKillAnimals(chick, dogNumber, probability, 2);
             }
 
-            // Kill egg
+            // Kill egg: use collective probability
             for (Egg egg : penguinFamily.getEggList())
             {
                 probability = randomNumber.generateRandomNumber(1, 1000 * 20);

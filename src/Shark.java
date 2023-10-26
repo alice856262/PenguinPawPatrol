@@ -17,7 +17,7 @@ public class Shark extends Animal
     public Shark()
     {
         super(true);
-        numberSharkKilled = new int[2];    // [0]: malePenguin, [1]: femalePenguin
+        numberSharkKilled = new int[2];    // numberSharkKilled[0]: malePenguin, numberSharkKilled[1]: femalePenguin
     }
 
     /**
@@ -40,7 +40,6 @@ public class Shark extends Animal
      * @param animalLists          Lists of animals used in the simulation.
      * @return                     An array representing the number of each type of animal killed.
      */
-    // Shark attack penguin
     @Override
     public int[] attack(int dogNumber, ArrayList<PenguinFamily> penguinFamilyList, ArrayList<Animal>... animalLists)
     {
@@ -48,11 +47,11 @@ public class Shark extends Animal
         {
             GenerateRandomNumber randomNumber = new GenerateRandomNumber();
 
-            // Kill male penguin
+            // Kill male penguin: use collective probability
             int probability = randomNumber.generateRandomNumber(1, 100 * 5);
             sharkKillAnimals(penguinFamily.getMalePenguin(), probability, 0);
 
-            // Kill female penguin
+            // Kill female penguin: use collective probability
             probability = randomNumber.generateRandomNumber(1, 100 * 5);
             sharkKillAnimals(penguinFamily.getFemalePenguin(), probability, 1);
         }

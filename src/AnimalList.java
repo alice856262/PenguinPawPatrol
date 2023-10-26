@@ -194,6 +194,6 @@ public class AnimalList
     public String toString()
     {
         return "Dog list = " + dogList + "; penguin family list = " + penguinFamilyList + "; fox list = " + foxList +
-                "; cat list = " + catList + "; shark list = " + sharkList;
+               "; cat list = " + catList + "; shark list = " + sharkList;
     }
 }

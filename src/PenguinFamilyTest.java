@@ -23,8 +23,8 @@ public class PenguinFamilyTest
     public void testNonDefaultConstructorWithUniqueIDWithInvalid()
     {
         PenguinFamily penguinFamily = new PenguinFamily("ABCD");
-         System.out.println("Create a PenguinFamily object with non-default constructor with uniqueID and invalid value.");
-         System.out.println(penguinFamily.toString());
+        System.out.println("Create a PenguinFamily object with non-default constructor with uniqueID and invalid value.");
+        System.out.println(penguinFamily.toString());
     }
 
     @Test
@@ -309,8 +309,7 @@ public class PenguinFamilyTest
     public void testToStringCase2()
     {
         // case 2: use non-default constructor and invalid value
-        PenguinFamily penguinFamily = new PenguinFamily("ABCD", new Penguin(true, 'A'), new Penguin(true, 'B'), new ArrayList<Chick>(), new ArrayList<Egg>());
-        penguinFamily.getFemalePenguin().setAlive(false);
+        PenguinFamily penguinFamily = new PenguinFamily("ABCD", new Penguin(true, 'A'), new Penguin(false, 'B'), new ArrayList<Chick>(), new ArrayList<Egg>());
         ArrayList<Chick> chickList = new ArrayList<Chick>();
         chickList.add(new Chick(true, 1));
         penguinFamily.setChickList(chickList);

@@ -17,7 +17,7 @@ public class Dog extends Animal
     public Dog()
     {
         super(true);
-        numberDogKilled = new int[2];    // [0]: fox, [1]: cat
+        numberDogKilled = new int[2];    // numberDogKilled[0]: fox, numberDogKilled[1]: cat
     }
 
     /**
@@ -40,7 +40,6 @@ public class Dog extends Animal
      * @param animalLists          Lists of animals used in the simulation.
      * @return                     An array representing the number of each type of animal killed.
      */
-    // Dog attack fox & cat
     @Override
     public int[] attack(int dogNumber, ArrayList<PenguinFamily> penguinFamilyList, ArrayList<Animal>... animalLists)
     {

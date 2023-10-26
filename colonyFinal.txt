@@ -1,0 +1,5 @@
+* family group survival rate: NaN%
+* penguin survival rate: NaN%
+* egg survival rate: NaN%
+* chick survival rate: NaN%
+* overall colony survival: NaN

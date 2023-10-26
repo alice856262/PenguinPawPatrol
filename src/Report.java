@@ -26,7 +26,7 @@ public class Report
      * @param catList              A list of cats.
      * @param sharkList            A list of sharks.
      */
-    public static void reportMonthStatus(ArrayList<PenguinFamily> penguinFamilyList, ArrayList<Animal> foxList, ArrayList<Animal> catList, ArrayList<Animal> sharkList)
+    public void reportMonthStatus(ArrayList<PenguinFamily> penguinFamilyList, ArrayList<Animal> foxList, ArrayList<Animal> catList, ArrayList<Animal> sharkList)
     {
         System.out.println("End of month colony status:");
         // Number of complete family groups --> What does "complete" family groups mean?
@@ -135,7 +135,7 @@ public class Report
      * @param penguinFamilyList    The list of penguin families representing the colony.
      * @param endNumberList        An array to store the summary statistics.
      */
-    public static void reportSimulationSummary(ArrayList<PenguinFamily> penguinFamilyList, int[] endNumberList)
+    public void reportSimulationSummary(ArrayList<PenguinFamily> penguinFamilyList, int[] endNumberList)
     {
         System.out.println("End of simulation summary:");
         // Number of complete family groups --> What does "complete" family groups mean?
@@ -194,32 +194,37 @@ public class Report
      * @param penguinFamilyList    The list of penguin families representing the colony.
      * @param penguinPawPatrol     An instance of the PenguinPawPatrol class.
      */
-    public static void reportSurvivalRates(int[] endNumberList, ArrayList<PenguinFamily> penguinFamilyList, PenguinPawPatrol penguinPawPatrol)
+    public void reportSurvivalRates(int[] endNumberList, ArrayList<PenguinFamily> penguinFamilyList, PenguinPawPatrol penguinPawPatrol)
     {
         System.out.println("Colony survival rates:");
         try
         {
             // Family group survival rate: (total_penguin_families_with_two_parents / total_penguin_families_at_the_start) * 100
+            // Family group survival rate: (total complete family / total complete family at the start) * 100
             double familySurvival = (endNumberList[2] * 100.0 / penguinFamilyList.size());
             penguinPawPatrol.getSurvivalList()[0] = "* family group survival rate: " + String.format("%.2f%%", familySurvival);
             System.out.println(penguinPawPatrol.getSurvivalList()[0]);
 
             // Penguin survival rate: (total_penguin_alive / total_penguins_at_the_start) * 100
+            // Penguin survival rate: (total alive penguin / total alive penguin at the start) * 100
             double penguinSurvival = (endNumberList[5] * 100.0 / (penguinFamilyList.size() * 2.0));
             penguinPawPatrol.getSurvivalList()[1] = "* penguin survival rate: " + String.format("%.2f%%", penguinSurvival);
             System.out.println(penguinPawPatrol.getSurvivalList()[1]);
 
             // Egg survival rate: (total_eggs_hatched / total_eggs_laid) * 100
+            // Egg survival rate: (total eggs "hatched" / total eggs "laid") * 100
             double eggSurvival = (endNumberList[1] * 100.0 / endNumberList[0]);
             penguinPawPatrol.getSurvivalList()[2] = "* egg survival rate: " + String.format("%.2f%%", eggSurvival);
             System.out.println(penguinPawPatrol.getSurvivalList()[2]);
 
             // Chick survival rate: (total_chicks_alive / total_chicks hatched) * 100
+            // Chick survival rate: (total alive chick / total chicks hatched) * 100
             double chickSurvival = (endNumberList[6] * 100.0 / endNumberList[1]);
             penguinPawPatrol.getSurvivalList()[3] = "* chick survival rate: " + String.format("%.2f%%", chickSurvival);
             System.out.println(penguinPawPatrol.getSurvivalList()[3]);
 
-            // Overall colony survival: (total_penguins_alive + total_chicks_alive / total_penguins_at_the_start)
+            // Overall colony survival: ((total_penguins_alive + total_chicks_alive) / total_penguins_at_the_start)
+            // Overall colony survival: ((total alive penguin + total alive chick) / total alive penguin at the start)
             double overallSurvival = (endNumberList[5] + endNumberList[6]) / (penguinFamilyList.size() * 2.0);
             penguinPawPatrol.getSurvivalList()[4] = "* overall colony survival: " + String.format("%.2f", overallSurvival);
             System.out.println(penguinPawPatrol.getSurvivalList()[4]);
@@ -232,6 +237,7 @@ public class Report
         catch (Exception e)
         {
             // Handle other exceptions
+            // getMessage(): retrieve error message associated with an exception (When an exception is thrown, it typically includes an error message as part of its information. The getMessage() method allows you to access this error message.)
             System.out.println("Error: " + e.getMessage());
         }
     }

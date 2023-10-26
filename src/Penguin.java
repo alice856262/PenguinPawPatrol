@@ -77,4 +77,3 @@ public class Penguin extends Animal
         return "alive status: " + isAlive() + "; gender: " + gender;
     }
 }
-

@@ -17,9 +17,8 @@ public class Cat extends Animal
     public Cat()
     {
         super(true);
-        numberCatKilled = new int[3];    // [0]: malePenguin, [1]: femalePenguin, [2]: chick
+        numberCatKilled = new int[3];    // numberCatKilled[0]: malePenguin, numberCatKilled[1]: femalePenguin, numberCatKilled[2]: chick
     }
-
 
     /**
      * Non-default constructor for the Cat class.
@@ -41,7 +40,6 @@ public class Cat extends Animal
      * @param animalLists          Lists of animals used in the simulation.
      * @return                     An array representing the number of each type of animal killed.
      */
-    // Cat attack penguin & chick
     @Override
     public int[] attack(int dogNumber, ArrayList<PenguinFamily> penguinFamilyList, ArrayList<Animal>... animalLists)
     {
@@ -49,15 +47,15 @@ public class Cat extends Animal
         {
             GenerateRandomNumber randomNumber = new GenerateRandomNumber();
 
-            // Kill male penguin
+            // Kill male penguin: use collective probability
             int probability = randomNumber.generateRandomNumber(1, 1000 * 10);
             catKillAnimals(penguinFamily.getMalePenguin(), dogNumber, probability, 0);
 
-            // Kill female penguin
+            // Kill female penguin: use collective probability
             probability = randomNumber.generateRandomNumber(1, 1000 * 10);
             catKillAnimals(penguinFamily.getFemalePenguin(), dogNumber, probability, 1);
 
-            // Kill chick
+            // Kill chick: use collective probability
             for (Chick chick : penguinFamily.getChickList())
             {
                 probability = randomNumber.generateRandomNumber(1, 1000 * 10);
@@ -87,7 +85,8 @@ public class Cat extends Animal
             animal.setAlive(false);
             numberCatKilled[index] += 1;
         }
-        else if ((animal.isAlive()) && (dogNumber == 2) && (probability <= 4)) {
+        else if ((animal.isAlive()) && (dogNumber == 2) && (probability <= 4))
+        {
             animal.setAlive(false);
             numberCatKilled[index] += 1;
         }

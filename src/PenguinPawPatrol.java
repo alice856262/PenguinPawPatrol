@@ -17,7 +17,7 @@ public class PenguinPawPatrol
      */
     public PenguinPawPatrol()
     {
-        survivalList = new String[5];    // [0]: family group, [1]: penguin, [2]: egg, [3]: chick, [4]: overall
+        survivalList = new String[5];    // survivalList[0]: penguin family group, survivalList[1]: penguin, survivalList[2]: egg, survivalList[3]: chick, survivalList[4]: overall
     }
 
     /**
@@ -35,7 +35,7 @@ public class PenguinPawPatrol
      *
      * @return    The number of patrol dogs (0, 1, or 2) as an integer.
      */
-    public static int askDogNumber()
+    public int askDogNumber()
     {
         System.out.println("How many patrol dogs (0 or 1 or 2)? ");
         Scanner console = new Scanner(System.in);
@@ -58,7 +58,7 @@ public class PenguinPawPatrol
      * @param foxList      A list of foxes to be attacked.
      * @param catList      A list of cats to be attacked.
      */
-    public static void attackFoxCat(ArrayList<Animal> dogList, int dogNumber, ArrayList<Animal> foxList, ArrayList<Animal> catList)
+    public void attackFoxCat(ArrayList<Animal> dogList, int dogNumber, ArrayList<Animal> foxList, ArrayList<Animal> catList)
     {
         int numberKillFox = 0;
         int numberKillCat = 0;
@@ -83,7 +83,7 @@ public class PenguinPawPatrol
      * @param catList              A list of cats participating in the attack.
      * @param sharkList            A list of sharks participating in the attack.
      */
-    public static void attackPenguinFamily(ArrayList<Animal> foxList, int dogNumber, ArrayList<PenguinFamily> penguinFamilyList, ArrayList<Animal> catList, ArrayList<Animal> sharkList)
+    public void attackPenguinFamily(ArrayList<Animal> foxList, int dogNumber, ArrayList<PenguinFamily> penguinFamilyList, ArrayList<Animal> catList, ArrayList<Animal> sharkList)
     {
         int numberKillMalePenguin = 0;
         int numberKillFemalePenguin = 0;
@@ -138,7 +138,7 @@ public class PenguinPawPatrol
     /**
      * Display welcome message at the beginning of the simulation.
      */
-    public static void displayWelcomeMessage()
+    public void displayWelcomeMessage()
     {
         System.out.println("Welcome to Paw Patrol");
         System.out.println("=====================");
@@ -161,7 +161,7 @@ public class PenguinPawPatrol
      * @param penguinFamilyList    A list of penguin families.
      * @param endNumberList        An array to store the count of new chicks and eggs.
      */
-    public static void growPenguinFamily(int month, ArrayList<PenguinFamily> penguinFamilyList, int[] endNumberList)
+    public void growPenguinFamily(int month, ArrayList<PenguinFamily> penguinFamilyList, int[] endNumberList)
     {
         int numberNewEgg = 0;
         int numberNewChick = 0;
@@ -227,7 +227,7 @@ public class PenguinPawPatrol
      *
      * @param month    An integer representing the month.
      */
-    public static void showMonth(int month)
+    public void showMonth(int month)
     {
         String monthAsString = "";
         switch (month)
@@ -283,8 +283,8 @@ public class PenguinPawPatrol
      */
     public void startProgram(PenguinPawPatrol penguinPawPatrol)
     {
-        displayWelcomeMessage();
-        int dogNumber = askDogNumber();
+        penguinPawPatrol.displayWelcomeMessage();
+        int dogNumber = penguinPawPatrol.askDogNumber();
         System.out.println("\nRunning simulation from month July to June.");
         System.out.println("Number of dog(s): " + dogNumber);
 
@@ -301,32 +301,34 @@ public class PenguinPawPatrol
         ArrayList<Animal> sharkList = animalList.getSharkList();
 
         // create endNumberList to record final number of every animal
-        // endNumberList = {endNumberEgg (total eggs "laid"), endNumberHatch (total eggs "hatched"), endNumberCompleteFamily, endNumberMalePenguin, endNumberFemalePenguin, endNumberPenguin, endNumberChick}
+        // endNumberList = {endNumberEgg (total_eggs_laid), endNumberHatch (total_eggs_hatched = total_chicks_hatched), endNumberCompleteFamily, endNumberMalePenguin, endNumberFemalePenguin, endNumberPenguin, endNumberChick}
+        // endNumberList[0]: total eggs "laid", endNumberList[1]: total eggs "hatched" (= total chicks hatched), endNumberList[2]: total complete family , endNumberList[3]: total alive male penguin, endNumberList[4]: total alive female penguin, endNumberList[5]: total alive penguin, endNumberList[6]: total alive chick
         int[] endNumberList = new int[]{0, 0, 0, 0, 0, 0, 0};
 
         // run simulation from month July to June
         int[] monthList = new int[]{7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6};
+        Report report = new Report();
         for (int month : monthList)
         {
-            showMonth(month);
+            penguinPawPatrol.showMonth(month);
             // STEP 3: penguin lay egg, chick grow, egg grow, egg hatch
-            growPenguinFamily(month, penguinFamilyList, endNumberList);
+            penguinPawPatrol.growPenguinFamily(month, penguinFamilyList, endNumberList);
             // STEP 4: fox, cat, shark --attack--> penguin, chick, egg
-            attackPenguinFamily(foxList, dogNumber, penguinFamilyList, catList, sharkList);
+            penguinPawPatrol.attackPenguinFamily(foxList, dogNumber, penguinFamilyList, catList, sharkList);
             // STEP 5: dog --attack--> fox, cat
-            attackFoxCat(dogList, dogNumber, foxList, catList);
+            penguinPawPatrol.attackFoxCat(dogList, dogNumber, foxList, catList);
             // STEP 6: clear chick and egg
             for (PenguinFamily penguinFamily : penguinFamilyList)
             {
                 penguinFamily.clearChickEgg();
             }
             // STEP 7: monthly report
-            Report.reportMonthStatus(penguinFamilyList, foxList, catList, sharkList);
+            report.reportMonthStatus(penguinFamilyList, foxList, catList, sharkList);
         }
         // STEP 8: final report
-        Report.reportSimulationSummary(penguinFamilyList, endNumberList);
+        report.reportSimulationSummary(penguinFamilyList, endNumberList);
         // STEP 9: calculate colony survival rates
-        Report.reportSurvivalRates(endNumberList, penguinFamilyList, penguinPawPatrol);
+        report.reportSurvivalRates(endNumberList, penguinFamilyList, penguinPawPatrol);
         // STEP 10: write file
         fileIO.writeFile("./colonyFinal.txt", penguinPawPatrol.survivalList);
         System.out.println("\nWriting survival rates into colonyFinal.txt!");
