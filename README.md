@@ -10,6 +10,8 @@ The Penguin Paw Patrol program will simulate a year in the life of a penguin col
 
 ## System Architecture
 
+<img alt="Class Diagram" src="/ClassDiagram.svg" title="Class Diagram" width="900"/>
+
 The abstract class `Animal` is the base class for all animal types. Each penguin family, inheriting from this class, consists of two penguins, a specific count of eggs, and a certain number of chicks. 
 
 The penguins, chicks, and eggs are susceptible to predators such as foxes, cats, and sharks. Notably, the Paw Patrol dogs have the capability to eliminate cats and foxes.
@@ -37,6 +39,4 @@ An arraylist is created to store the number of both penguin family and all kinds
         (total_penguins_alive + total_chicks_alive) / total_penguins_at_the_start
 
 Note that an overall colony survival < 1 means that the colony will decline and an overall colony survival > 1 means that the colony will grow.
-
-<img alt="Class Diagram" src="/ClassDiagram.svg" title="Class Diagram" width="900"/>
 
