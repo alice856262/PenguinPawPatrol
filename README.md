@@ -12,11 +12,11 @@ The Penguin Paw Patrol program will simulate a year in the life of a penguin col
 
 <img alt="Class Diagram" src="/ClassDiagram.svg" title="Class Diagram" width="900"/>
 
-The abstract class `Animal` is the base class for all animal types. Each penguin family, inheriting from this class, consists of two penguins, a specific count of eggs, and a certain number of chicks. 
+The abstract class `Animal` is the base class for all animal types. Each `PenguinFamily`, inheriting from this class, consists of two penguins, a specific count of eggs, and a certain number of chicks. 
 
 The penguins, chicks, and eggs are susceptible to predators such as foxes, cats, and sharks. Notably, the Paw Patrol dogs have the capability to eliminate cats and foxes.
 
-An arraylist is created to store the number of both penguin family and all kinds of predators. At the end of the simulation a summary is displayed and written to the file colonyFinal.txt.
+An arraylist `AnimalList` is created to store the number of both penguin family and all kinds of predators. At the end of the simulation a summary is displayed and written to the file colonyFinal.txt.
 
 - Family group survival rate:
 
