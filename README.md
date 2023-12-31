@@ -38,5 +38,5 @@ An arraylist is created to store the number of both penguin family and all kinds
 
 Note that an overall colony survival < 1 means that the colony will decline and an overall colony survival > 1 means that the colony will grow.
 
-<img alt="Class Diagram" src="/ClassDiagram.pdf" title="Class Diagram" width="900"/>
+<img alt="Class Diagram" src="/ClassDiagram.svg" title="Class Diagram" width="900"/>
 
