@@ -1,5 +1,5 @@
-* family group survival rate: 2.75%
-* penguin survival rate: 16.75%
-* egg survival rate: 64.91%
-* chick survival rate: 19.20%
-* overall colony survival: 0.32
+* family group survival rate: 34.50%
+* penguin survival rate: 58.00%
+* egg survival rate: 68.80%
+* chick survival rate: 74.31%
+* overall colony survival: 1.86
